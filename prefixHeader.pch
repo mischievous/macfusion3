@@ -1,0 +1,34 @@
+//
+//  prefixHeader.pch
+//  macFusion
+//
+//  Created by Alexandra Beebe on 1/4/17.
+//  Copyright © 2017 Alexandra Beebe. All rights reserved.
+//
+
+#ifndef prefixHeader_pch
+#define prefixHeader_pch
+
+//#import <Cocoa/Cocoa.h>
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+    //#define DD_LEGACY_MACROS 0
+    #import "CocoaLumberjack.h"
+
+    static const DDLogLevel ddLogLevel = DDLogLevelInfo;
+
+    //
+    #define NSLog DDLogInfo
+
+
+    //
+    #define amMap NSMutableDictionary
+
+
+#endif
+
+#endif /* prefixHeader_pch */

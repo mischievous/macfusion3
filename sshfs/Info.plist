@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2017 Alexandra Beebe. All rights reserved.</string>
+	<key>NSPrincipalClass</key>
+	<string>sshfs</string>
+	<key>fileSystem</key>
+	<dict>
+		<key>options</key>
+		<dict>
+			<key>deferPermissions</key>
+			<string>-odefer_permissions</string>
+			<key>compression</key>
+			<string>-ocompression=yes</string>
+			<key>autoCache</key>
+			<string>-oauto_cache</string>
+			<key>symlinks</key>
+			<string>-ofollow_symlinks</string>
+		</dict>
+		<key>nibs</key>
+		<array>
+			<string>advanced</string>
+		</array>
+		<key>image</key>
+		<string>sshfs.png</string>
+		<key>executable</key>
+		<string>/usr/local/bin/sshfs</string>
+		<key>name</key>
+		<string>Secure Shell Filesystem</string>
+	</dict>
+</dict>
+</plist>
