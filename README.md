@@ -10,7 +10,14 @@ Macfusion 3
 - Support for SSH (Secure Shell)
 - Uses your machine's native configuration for SSH, including support for private keys and custom settings.
 - Improved filesystem plugin support
-  
+
+Requirements
+============
+[CocoaLumberjack]:https://github.com/CocoaLumberjack/CocoaLumberjack
+[KVO-Blocks]:https://github.com/sleroux/KVO-Blocks
+
+
+
 [Macfusion]:http://macfusionapp.org/
 [Macfusion2]:https://github.com/mgorbach/macfusion2
 [Fuse for OSX]:https://osxfuse.github.io/
