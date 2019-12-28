@@ -15,9 +15,17 @@
 
 //
 //
--(BOOL      ) mount      :(NSDictionary        *) data
+-(NSArray *) mount      :(NSDictionary        *) data :(NSString *) bindAddress
 {
-    return 1;
+    if (bindAddress == NULL)
+        return data[MOUNT];
+
+    //
+    NSMutableArray *rtn = [NSMutableArray arrayWithArray:data[MOUNT]];
+    
+    [rtn  addObject: [NSString stringWithFormat:@"-oBindAddress=%@", bindAddress]];
+
+    return rtn;
 }
 //
 

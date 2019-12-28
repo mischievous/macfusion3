@@ -36,9 +36,33 @@ NSDictionary *options = @{
                          };
 
 
+//
+//
+void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
+{
+    pluginController *pc = (__bridge pluginController *) info;
+    
+    for (NSString *key in (__bridge NSArray *) changedKeys)
+    {
+        //NSString *interface = [key componentsSeparatedByString:@"/"][3];
+        NSString *address   = NULL;
+    
+        CFPropertyListRef value;
+        if ((value = SCDynamicStoreCopyValue(store, (__bridge CFStringRef) key)))
+            address = ((__bridge NSDictionary *) value)[@"Addresses"][0];
 
+        //
+        [pc autoMount:key :address];
+        
+        //
+        if (value)
+            CFRelease (value);
+    }
+}
 //
-//
+
+
+
 @interface pluginController ()
 {
     //
@@ -57,8 +81,13 @@ NSDictionary *options = @{
     
     //
     NSNumber              *sierra;
+    
+    //
+    SCDynamicStoreContext  contex;
+    SCDynamicStoreRef      networkWatcher;
+
+    
 }
-//
 
 //
 @property (weak)   IBOutlet NSWindow            *window;
@@ -181,7 +210,41 @@ NSDictionary *options = @{
         
         //
         [_mountPoints addObject:data];
+
+        //
+        if ([data[LNCHMNT] boolValue])
+            [self __mount:data :NULL :NULL];
+        
     }
+    
+    //
+    contex         = {0, (__bridge void *)(self), NULL, NULL, NULL};
+    networkWatcher = SCDynamicStoreCreate (NULL, (__bridge CFStringRef) @"macFusion3", callback, &contex );
+    NSLog (@"%p : %@", self, networkWatcher);
+    
+    //
+    SCDynamicStoreSetNotificationKeys(networkWatcher, NULL, (__bridge CFArrayRef) @[@"State:/Network/Interface/.*/IPv4"]);
+    
+    //
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), SCDynamicStoreCreateRunLoopSource(NULL, networkWatcher, 0), kCFRunLoopCommonModes);
+    
+    //
+    const void *matchAllAdapters = CFSTR("State:/Network/Interface/.*/IPv4");
+    CFArrayRef      patterns = CFArrayCreate(kCFAllocatorDefault, &matchAllAdapters, 1, &kCFTypeArrayCallBacks);
+    
+    CFDictionaryRef snapshot = SCDynamicStoreCopyMultiple(networkWatcher, NULL, patterns);
+    
+    //
+    [(__bridge NSDictionary *) snapshot enumerateKeysAndObjectsUsingBlock: ^(NSString *key, NSDictionary *val, BOOL *stop)
+        {
+            //
+            [self autoMount:key :val[@"Addresses"  ][0]];
+        }
+     ];
+    
+    //
+    CFRelease (patterns);
+    CFRelease (snapshot);
 }
 //
 
@@ -192,6 +255,7 @@ NSDictionary *options = @{
     //
     if (data)
     {
+//        NSLog (@"%lu : %s", (unsigned long)[mountActive indexOfObject:data[MNTPATH]], __FUNCTION__);
         data[MNTSTATUS] = ([mountActive indexOfObject:data[MNTPATH]] == NSNotFound) ? @0:@1;
     
         //
@@ -244,11 +308,17 @@ NSDictionary *options = @{
 -(IBAction) performUnmount   :(NSButton *) sender
 {
     //
+    // https://stackoverflow.com/questions/34552164/unmount-disk-in-osx-with-diskarbitration
+    
+    //
     NSDictionary *mp;
     if (!(mp = [self selectedMount]))
         return;
-    
-    [self __unmount:mp];
+
+    //
+    [self performSelectorInBackground:@selector(__unmount:) withObject:mp];
+
+//    [self __unmount:mp];
 }
 //
 
@@ -260,7 +330,8 @@ NSDictionary *options = @{
     if (!(mp = [self selectedMount]))
         return;
     
-    [self __mount :mp :NULL];
+    //
+    [self performSelectorInBackground:@selector(__background_mount:) withObject:mp];
 }
 //
 
@@ -269,15 +340,29 @@ NSDictionary *options = @{
 //
 -(void) __unmount :(NSDictionary *) mp
 {
+    NSLog (@"+__unmount : %@", mp[MNTPATH]);
+
+    //
     NSError *error;
     if ([[NSWorkspace sharedWorkspace] unmountAndEjectDeviceAtURL:[NSURL fileURLWithPath: mp[MNTPATH]] error:&error] == 0)
         NSLog (@"unmounting %@ : %@", mp[MNTPATH], error);
+    
+    NSLog (@"-__unmount");
 }
 //
 
 //
 //
--(void) __mount :(NSDictionary *) mp :(NSString *) interface
+-(void) __background_mount :(NSDictionary *) mp
+{
+    [self __mount :mp :NULL :NULL];
+}
+//
+
+
+//
+//
+-(void) __mount :(NSDictionary *) mp :(NSString *) interface :(NSString *) bindAddress
 {
     // Check to see if the volume is already mounted and get out of dodge if it is.
     if ([mp[MNTSTATUS] boolValue] == 1)
@@ -316,12 +401,12 @@ NSDictionary *options = @{
     }
     
     //
-    if (!([plugin.primaryObject mount:mp]))
+    NSArray *mount;
+    if (!(mount = [plugin.primaryObject mount:mp :bindAddress]))
         return;
-    
-    
+
     //
-    executeTask (plugin.executable, mp[MOUNT], 0);
+    executeTask (plugin.executable, mount, 0);
 }
 //
 
@@ -370,25 +455,23 @@ NSDictionary *options = @{
         return NULL;
     
     //
-    [bundle load];
+    if (![bundle load])
+        return NULL;
     
     //
     if (! [[bundle principalClass] conformsToProtocol:@protocol (macfusion)] )
         return NULL;
     
     
-    // verify the "filesystem"ary
+    // verify the "filesystem" matches the actual protocol
     NSDictionary *fileSystem;
     if (!(fileSystem = [bundle objectForInfoDictionaryKey:@"fileSystem"]))
         return NULL;
     
     
     // If the fileSystem uses an executable make sure it exists...
-    if ([fileSystem objectForKey:@"executable"])
-    {
-        if (![[NSFileManager defaultManager] fileExistsAtPath:[fileSystem objectForKey:@"executable"]])
-            return NULL;
-    }
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[fileSystem objectForKey:@"executable"]])
+        return NULL;
 
     //
     pluginObject *object;
@@ -433,7 +516,7 @@ NSDictionary *options = @{
     }
     
     //
-    for (NSString *nibName in @[@"macfusion"])
+    for (NSString *nibName in @[@"macfusion", @"automount"])
     {
         overlay *ol;
         
@@ -470,7 +553,7 @@ NSDictionary *options = @{
 
 //
 //
--(amMap *) selectedMount
+-(NSMutableDictionary *) selectedMount
 {
     // Grab the selected objects.
     NSArray *so = [_mountPoints selectedObjects];
@@ -564,6 +647,38 @@ NSDictionary *options = @{
     [self setOptions :plugin.options :data :mount];
     
     //
+    if ([data[NTWKMNT] boolValue])
+    {
+        data[NETMASK] = @0;
+        data[NTWKMNT] = (((NSString *) data[NETWORK]).length) ? @1:@0;
+    }
+
+    //
+    if ([data[NTWKMNT] boolValue])
+    {
+        uint32_t bits        = 0;
+
+    
+        //
+        NSArray *a = [data[NETWORK] componentsSeparatedByString:@"/"];
+        if (a.count == 2)
+            bits = atoi ([a[1] UTF8String]);
+
+        //
+        uint32_t count       = 32 - bits;
+        
+
+    
+        //
+        uint32_t networkMask = ((count != 32) ? (1 << count) - 1 : 0xffffffff) << bits;
+        uint32_t networkAddr = [self networkAddress:a[0] :networkMask];
+            
+        //
+        data[NETMASK] = [NSNumber numberWithUnsignedInteger:networkMask];
+        data[NETADDR] = [NSNumber numberWithUnsignedInteger:networkAddr];
+    }
+    
+    //
     data[MOUNT] = mount;
     
     //
@@ -582,7 +697,7 @@ NSDictionary *options = @{
 
 //
 //
--(void) acceptSheet :(amMap *) mp
+-(void) acceptSheet :(NSMutableDictionary *) mp
 {
     //
     pluginObject *plugin;
@@ -671,7 +786,7 @@ NSDictionary *options = @{
 
 //
 //
--(void) edit :(amMap *) mp
+-(void) edit :(NSMutableDictionary *) mp
 {
     if (!mp)
         return;
@@ -705,22 +820,22 @@ NSDictionary *options = @{
         return;
     
     //
-    [_mountPoints setSelectionIndex:NSNotFound];
+    [_mountPoints setSelectionIndex:NSNotFound];    
+
+    //
+    NSMutableDictionary *mp = [NSMutableDictionary dictionaryWithCapacity:0];
+
+    //
+    mp[PLUGIN   ] = ((pluginObject *) sender.representedObject).name;
+    mp[MNTSTATUS] = @0;
+    mp[MNTIMAGE ] = ((pluginObject *) sender.representedObject).image.name;
+    mp[SIERRA   ] = sierra;
+    mp[USERNAME ] = NSUserName();
+    mp[HOST     ] = @"";
+    mp[PATH     ] = @"";
     
     //
-    NSDictionary *mp = @{
-                            PLUGIN           : ((pluginObject *) sender.representedObject).name,
-                            MNTSTATUS        : [NSNumber numberWithBool:false],
-                            MNTIMAGE         : ((pluginObject *) sender.representedObject).image.name,
-                            SIERRA           : sierra,
-                            
-                            USERNAME         : NSUserName(),
-                            HOST             : @"",
-                            PATH             : @"",
-                        };
-    
-    //
-    [self edit :[amMap dictionaryWithDictionary:mp]];
+    [self edit :[NSMutableDictionary dictionaryWithDictionary:mp]];
 }
 //
 
@@ -750,5 +865,124 @@ NSDictionary *options = @{
     [self edit :mp];
 }
 //
+
+
+#pragma mark network
+
+//
+//
+-(uint32_t) networkAddress :(NSString *) data :(uint32_t) mask
+{
+    //
+    NSArray *octets = [data componentsSeparatedByString:@"."];
+    
+    //
+    unsigned int address = 0;
+    
+    //
+    for (NSString *octet in octets)
+        address = (address << 8) | atoi ([octet UTF8String]);
+    
+    //
+    uint32_t bits = 8 * (4 - (uint32_t) octets.count);
+    
+    //    //
+    //    while (bits)
+    //        { address = (address << 1) | 1; bits -= 1;}
+    
+    //
+    return ((address << bits) & mask);
+}
+//
+
+
+#pragma mark automount
+
+//
+//
+-(bool) mountInterface :(NSDictionary *) mp :(NSString *) data
+{
+    if (![mp[INTFMNT] boolValue])
+        return 0;
+
+    //
+    return ([data caseInsensitiveCompare:mp[INTERFACE]] == NSOrderedSame) ? 1:0;
+}
+//
+
+//
+//
+-(bool) mountNetwork   :(NSDictionary *) mp :(NSString *) data
+{
+    if (![mp[NTWKMNT] boolValue])
+        return 0;
+    
+    //
+    uint32_t networkMask = (uint32_t) [mp[NETMASK] unsignedIntegerValue];
+    uint32_t networkAddr = (uint32_t) [mp[NETADDR] unsignedIntegerValue];
+    
+    //
+    unsigned int address = [self networkAddress:data :networkMask];
+    
+    //
+    return ((address & networkMask) == networkAddr) ? 1:0;
+}
+//
+
+//
+//
+-(void) autoMount:(NSString *)key :(NSString *) address
+{
+    //
+    NSString *interface = [key componentsSeparatedByString:@"/"][3];
+
+    // This interface has left... need to unmount everything...
+    if (address == NULL)
+    {
+        NSLog (@"%p : %@\n", autoMounts[interface], interface );
+    
+        //
+        if (autoMounts[interface] != NULL)
+        {
+            for (NSDictionary *mp in autoMounts[interface])
+                [self __unmount:mp];
+            
+        
+            //
+            [autoMounts removeObjectForKey:interface];
+        }
+        
+        //
+        return;
+    }
+    
+    
+    //
+    for (NSDictionary *mp in _mountPoints.content)
+    {
+        // Already mounted.
+        if ([mp[MNTSTATUS] boolValue])
+            continue;
+    
+        BOOL mount = 0;
+        
+        //
+        mount |= [self mountInterface:mp :interface];
+        mount |= [self mountNetwork  :mp :address  ];
+        
+        // Check for mount...
+        if (!mount)
+            continue;
+    
+        NSLog (@"Automounting : %@ : %@", mp[MNTNAME], interface);
+    
+        //
+        [self __mount:mp :interface :address];
+    }
+    
+}
+//
+
+
 
 @end

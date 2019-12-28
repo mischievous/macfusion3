@@ -16,6 +16,10 @@
 //
 -(void) acceptSheet:(NSDictionary *) mp;
 
+////
+//-(IBAction) cancelSheet   :(NSButton *) sender;
+//-(IBAction) acceptSheet   :(NSButton *) sender;
+
 //
 -(IBAction) segmentAction :(NSSegmentedControl *) sendder;
 

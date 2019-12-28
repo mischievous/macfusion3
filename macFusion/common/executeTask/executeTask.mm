@@ -19,18 +19,38 @@ void executeTask (NSString *launchPath, NSArray *arguments, BOOL debug)
 
 
     //
-    NSTask *task = NULL;
-    
+//    NSTask *task = NULL;
+
+    NSPipe *out  = [NSPipe pipe];
+
     //
-    if (debug == 0)
-        task = [NSTask launchedTaskWithLaunchPath:launchPath arguments:arguments];
+    NSTask *task = (debug == 0) ? [[NSTask alloc] init] : NULL;
     
     //
     NSLog (@"+task : %@ - %@ %@", task, launchPath, [arguments componentsJoinedByString:@" "]);
     
     //
     if (task)
+    {
+        //
+        [task setLaunchPath    :launchPath];
+        [task setArguments     :arguments];
+        [task setStandardOutput:out];
+//        [task setStandardError :out];
+
+        [task launch];
         [task waitUntilExit];
+        
+        
+//        NSFileHandle *file = [out fileHandleForReading];
+//        
+//        NSData *pipe = [file availableData];
+        
+    
+        NSLog (@" task: %s", (char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes]);
+    }
+    
+    
     
     //
     NSLog (@"-task");

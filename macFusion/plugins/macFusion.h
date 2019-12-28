@@ -23,11 +23,21 @@
 #define PATH         (@"path"         )
 #define DEVICE       (@"device"       )
 
+#define LNCHMNT      (@"amLaunch"     ) // Auto mount launch
+#define INTFMNT      (@"amInterface"  ) // Auto mount interface : utun0
+#define NTWKMNT      (@"amNetwork"    ) // Auto mount network   : 192.168/16
+
+#define INTERFACE    (@"interface"    ) // Auto mount interface name 
+#define NETWORK      (@"network"      ) // Auto mount network address
+#define NETMASK      (@"netmask"      ) // Auto mount network address
+#define NETADDR      (@"netaddr"      ) // Auto mount network address
+
+
 //
 @protocol macfusion <NSObject>
 
     @required
-        -(BOOL      ) mount      :(NSDictionary        *) data;
+        -(NSArray  *) mount      :(NSDictionary        *) data :(NSString *) bindAddress;
 
         -(NSString *) device     :(NSMutableDictionary *) data;
 

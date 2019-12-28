@@ -24,3 +24,31 @@ Requirements
 [SSHFS]:https://github.com/mischievous/sshfs
 
 
+
+
+
+Macfusion bug/features
+
+
+    DATE
+(____/__/__)            Application System tray
+(2017/01/28)            Automount
+                            Mount at login
+                            Mount on ethernet interface
+                            Mount based upon ip address
+
+(2017/01/29)            Automount - Bind to interface.
+
+(2017/01/12)            Sierra Detection
+(2017/01/12)            Unmount
+
+(____/__/__)            Toggle image display baused upon mount/unmount
+
+(____/__/__)            Mount Bind
+
+(____/__/__)            Import/Export mountPoint
+
+(2017/01/12)            Monitor mount/unmout status
+
+(2017/01/08)            (Un)Hide edit  button based upon selection and count
+(2017/01/08)            (Un)Hide mount button based upon selection and count

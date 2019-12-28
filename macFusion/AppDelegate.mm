@@ -24,13 +24,8 @@
 {
     if (self == [AppDelegate class])
     {
-        [DDLog addLogger:[DDTTYLogger    sharedInstance]]; // TTY = Xcode console
-//        [DDLog addLogger:[DDASLLogger sharedInstance]]; // ASL = Apple System Logs
-        [DDLog addLogger:[datagramLogger sharedInstance]];
-        
         //
         NSLog     (@"+%s", __FUNCTION__);
-        DDLogInfo (@"+%s", __FUNCTION__);
     }
 }
 //
