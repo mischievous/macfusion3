@@ -1,3 +1,5 @@
+I hate editing MD files!
+
 Macfusion 3
 ===========
 
@@ -8,22 +10,20 @@ Macfusion 3
 - Mount files and documents as a "Volume" in the Mac OS X Finder
 - Work with your files using your favorite Mac OS X applications directly. No manual upload or download needed!
 - Support for SSH (Secure Shell)
-- Uses your machine's native configuration for SSH, including support for private keys and custom settings.
+- Uses your machine's native configuration for SSH, private keys, binding addresses and other custom settings.
 - Improved filesystem plugin support
 
 Requirements
 ============
-[CocoaLumberjack]:https://github.com/CocoaLumberjack/CocoaLumberjack
 [KVO-Blocks]:https://github.com/sleroux/KVO-Blocks
-
-
-
-[Macfusion]:http://macfusionapp.org/
-[Macfusion2]:https://github.com/mgorbach/macfusion2
 [Fuse for OSX]:https://osxfuse.github.io/
 [SSHFS]:https://github.com/mischievous/sshfs
 
 
+Older Versions
+==============
+[Macfusion]:http://macfusionapp.org/
+[Macfusion2]:https://github.com/mgorbach/macfusion2
 
 
 
@@ -32,6 +32,7 @@ Macfusion bug/features
 
     DATE
 (____/__/__)            Application System tray
+
 (2017/01/28)            Automount
                             Mount at login
                             Mount on ethernet interface
