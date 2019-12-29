@@ -46,6 +46,7 @@ Macfusion bug/features
 (____/__/__)            Toggle image display baused upon mount/unmount
 
 (____/__/__)            Mount Bind
+(2019/12/29)            Mount Native Ram Disk
 
 (____/__/__)            Import/Export mountPoint
 
