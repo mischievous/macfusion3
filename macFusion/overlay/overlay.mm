@@ -164,10 +164,16 @@ NSMutableDictionary *overlays;
     {
         [overlay setHidden: self.hidden];
     }
-    
+
+    NSLog (@"%@", target);
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
     if ((target) && (action))
         [target performSelector:action withObject:self];
-    
+#pragma clang diagnostic pop
+
 }
 //
 

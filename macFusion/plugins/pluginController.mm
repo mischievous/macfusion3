@@ -194,9 +194,9 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
     //
     for (NSURL *url in [fileManager mountedVolumeURLsIncludingResourceValuesForKeys:NULL options:NSVolumeEnumerationSkipHiddenVolumes])
         [mountActive addObject:url.path];
-    
+
     //
-    for (__strong NSString *path in [fileManager contentsOfDirectoryAtPath:supportPath error:NULL])
+    for (__strong NSString *path in [[fileManager contentsOfDirectoryAtPath:supportPath error:NULL] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)])
     {
         if ([[path pathExtension] compare:@"mountPoint"] != NSOrderedSame)
             continue;
@@ -732,7 +732,7 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
     
     //
     mountPaths[mp[MNTPATH]] = mp;
-    
+
     //
     [self volumeStatus:mp :NULL];
 }
