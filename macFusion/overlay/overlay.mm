@@ -131,7 +131,6 @@ NSMutableDictionary *overlays;
     //
     self.sectionName = [overlay identifier];
     
-    
     //
     NSSize frameSize = overlay.frame.size;
     frameSize.height += HIDDEN;

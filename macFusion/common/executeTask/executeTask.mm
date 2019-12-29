@@ -11,8 +11,10 @@
 
 //
 //
-void executeTask (NSString *launchPath, NSArray *arguments, BOOL debug)
+NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
 {
+    NSString *output = NULL;
+
     //
     if ([launchPath characterAtIndex:0] == '.')
         NSLog (@"%@", launchPath);
@@ -40,19 +42,30 @@ void executeTask (NSString *launchPath, NSArray *arguments, BOOL debug)
 
         [task launch];
         [task waitUntilExit];
-        
+
+
+
+        //
+        output = [[NSString stringWithUTF8String:(const char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes]] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSLog (@" task: *** %@ ***", output);
+
+
         
 //        NSFileHandle *file = [out fileHandleForReading];
 //        
 //        NSData *pipe = [file availableData];
-        
-    
-        NSLog (@" task: %s", (char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes]);
+//        output = (char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes];
+//        NSLog (@" task: %s", output);
+
+        if ([task terminationReason] == NSTaskTerminationReasonUncaughtSignal)
+            output = NULL;
+
+//        NSLog (@" task: %s", (char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes]);
     }
-    
-    
     
     //
     NSLog (@"-task");
+
+    return output;
 }
 //

@@ -36,6 +36,9 @@
 //
 @protocol macfusion <NSObject>
 
+    @optional
+        -(void      ) callback   :(NSDictionary        *) data :(NSString *) output;
+
     @required
         -(NSArray  *) mount      :(NSDictionary        *) data :(NSString *) bindAddress;
 

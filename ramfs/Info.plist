@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,42 +13,31 @@
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
-	<string>BNDL</string>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2017 Alexandra Beebe. All rights reserved.</string>
+	<string>Copyright © 2019 Alexandra Beebe. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
-	<string>sshfs</string>
+	<string>ramfs</string>
 	<key>fileSystem</key>
 	<dict>
-		<key>options</key>
-		<dict>
-			<key>deferPermissions</key>
-			<string>-odefer_permissions</string>
-			<key>compression</key>
-			<string>-ocompression=yes</string>
-			<key>autoCache</key>
-			<string>-oauto_cache</string>
-			<key>symlinks</key>
-			<string>-ofollow_symlinks</string>
-		</dict>
+		<key>executable</key>
+		<string>/usr/bin/hdiutil</string>
+		<key>image</key>
+		<string>ram0.png</string>
+		<key>name</key>
+		<string>Ram Disk Filesystem</string>
 		<key>nibs</key>
 		<array>
-			<string>credentials</string>
-			<string>advanced</string>
 			<string>mountpoint</string>
-			<string>macfusion</string>
 			<string>automount</string>
+			<string>properties</string>
 		</array>
-		<key>image</key>
-		<string>sshfs.png</string>
-		<key>executable</key>
-		<string>/usr/local/bin/sshfs</string>
-		<key>name</key>
-		<string>Secure Shell Filesystem</string>
+		<key>options</key>
+		<dict/>
 	</dict>
 </dict>
 </plist>

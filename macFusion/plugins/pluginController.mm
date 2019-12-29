@@ -406,7 +406,13 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
         return;
 
     //
-    executeTask (plugin.executable, mount, 0);
+    NSString *output;
+    if ((output = executeTask (plugin.executable, mount, 0 )))
+    {
+        //
+        if ( [plugin.primaryObject respondsToSelector:@selector(callback::)] )
+            [((NSObject <macfusion> *) plugin.primaryObject) callback :mp :output];
+    }
 }
 //
 
@@ -493,38 +499,18 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
     object.image          = [[NSImage alloc] initByReferencingFile:imageName];
     object.image.name     = imageName;
 
-
-    //  credentials come first in any ... any filesystem
-    for (NSString *nibName in @[@"credentials"])
-    {
-        overlay *ol;
-        
-        //
-        if ((ol = [overlay factory :nibName :[NSBundle mainBundle] :_editorController]))
-            [object.overlays addObject:ol];
-    }
-
-    
-    //
+    // Honor the order of the "nibs", since its an array the order can be re-configured...
     for (NSString *nibName in [fileSystem objectForKey:@"nibs"])
     {
-        overlay *ol;
-    
-        //
-        if ((ol = [overlay factory :nibName :bundle :_editorController]))
-            [object.overlays addObject:ol];
-    }
-    
-    //
-    for (NSString *nibName in @[@"macfusion", @"automount"])
-    {
-        overlay *ol;
-        
-        //
-        if ((ol = [overlay factory :nibName :[NSBundle mainBundle] :_editorController]))
-            [object.overlays addObject:ol];
-    }
+        uint64_t masterBundle = ([@[@"automount", @"credentials", @"macfusion", @"mountpoint"] indexOfObject:nibName] != NSNotFound) ? 1:0;
 
+        //
+        overlay *ol;
+
+        //
+        if ((ol = [overlay factory :nibName :(masterBundle) ? [NSBundle mainBundle]:bundle :_editorController]))
+            [object.overlays addObject:ol];
+    }
 
     //
     return object;
@@ -597,6 +583,10 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
 //
 -(BOOL) epilogEdit :(NSMutableDictionary *) data :(pluginObject *) plugin
 {
+    //
+    if (!data[MNTNAME])
+        return 0;
+
     //
     // (x) device
     // (x) mount point
@@ -687,8 +677,7 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
     //
     if (data[EXTRAOPTIONS])
         [mount addObject:data[EXTRAOPTIONS]];
-    
-    
+
     //
     return 1;
 }

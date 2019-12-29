@@ -10,5 +10,5 @@
 #import <Cocoa/Cocoa.h>
 
 //
-void executeTask (NSString *launchPath, NSArray *arguments, BOOL debug = 0);
+NSString __attribute__((weak)) *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug = 0);
 

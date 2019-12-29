@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A811A5F523B809F800F21E1B /* ram0.png in Resources */ = {isa = PBXBuildFile; fileRef = A811A5F323B809F800F21E1B /* ram0.png */; };
+		A811A5F923B80A5E00F21E1B /* ramfs.mm in Sources */ = {isa = PBXBuildFile; fileRef = A811A5F823B80A5E00F21E1B /* ramfs.mm */; };
+		A811A5FC23B80AB100F21E1B /* ramfs.filesystem in CopyFiles */ = {isa = PBXBuildFile; fileRef = A811A5EC23B8085E00F21E1B /* ramfs.filesystem */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A811A5FE23B8124400F21E1B /* mountpoint.xib in Resources */ = {isa = PBXBuildFile; fileRef = A811A5FD23B8124400F21E1B /* mountpoint.xib */; };
 		A8121A2A1E1DBC80000A1FA2 /* mntStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8121A291E1DBC80000A1FA2 /* mntStatus.mm */; };
 		A816211F1E1D972600309341 /* pluginObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = A84288031E1B41FE00FA45E8 /* pluginObject.mm */; };
 		A822DFBB1E1AD4A200D01EC8 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A822DFBA1E1AD4A200D01EC8 /* AppDelegate.mm */; };
@@ -22,6 +26,7 @@
 		A86572281E20433800C4C5E1 /* overlay.mm in Sources */ = {isa = PBXBuildFile; fileRef = A86572271E20433800C4C5E1 /* overlay.mm */; };
 		A879FA941E21B7AE00DA3E5D /* executeTask.mm in Sources */ = {isa = PBXBuildFile; fileRef = A879FA931E21B7AE00DA3E5D /* executeTask.mm */; };
 		A8940C801E3BC54800CDFE25 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8940C7F1E3BC54800CDFE25 /* CoreFoundation.framework */; };
+		A89F283523B8F197003E868D /* properties.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89F283423B8F197003E868D /* properties.xib */; };
 		A8A45B961E27FBB5008AB81D /* trasformers.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8A45B951E27FBB5008AB81D /* trasformers.mm */; };
 		A8A45BAB1E282B0E008AB81D /* credentials.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A45BAA1E282B0E008AB81D /* credentials.xib */; };
 		A8A66AE11E204D2B00E1EA51 /* editor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8A66AE01E204D2B00E1EA51 /* editor.mm */; };
@@ -32,6 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A811A5FA23B80AA600F21E1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A822DFAE1E1AD4A100D01EC8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A811A5EB23B8085E00F21E1B;
+			remoteInfo = ramfs;
+		};
 		A84287FA1E1B386300FA45E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A822DFAE1E1AD4A100D01EC8 /* Project object */;
@@ -48,6 +60,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				A811A5FC23B80AB100F21E1B /* ramfs.filesystem in CopyFiles */,
 				A84287FD1E1B388500FA45E8 /* sshfs.filesystem in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +68,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A811A5EC23B8085E00F21E1B /* ramfs.filesystem */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ramfs.filesystem; sourceTree = BUILT_PRODUCTS_DIR; };
+		A811A5EE23B8085E00F21E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A811A5F323B809F800F21E1B /* ram0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ram0.png; sourceTree = "<group>"; };
+		A811A5F423B809F800F21E1B /* ram1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ram1.png; sourceTree = "<group>"; };
+		A811A5F723B80A5E00F21E1B /* ramfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ramfs.h; sourceTree = "<group>"; };
+		A811A5F823B80A5E00F21E1B /* ramfs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ramfs.mm; sourceTree = "<group>"; };
+		A811A5FD23B8124400F21E1B /* mountpoint.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mountpoint.xib; sourceTree = "<group>"; };
 		A8121A281E1DBC80000A1FA2 /* mntStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mntStatus.h; sourceTree = "<group>"; };
 		A8121A291E1DBC80000A1FA2 /* mntStatus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mntStatus.mm; sourceTree = "<group>"; };
 		A81621201E1D978A00309341 /* pluginObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pluginObject.h; sourceTree = "<group>"; };
@@ -82,6 +102,7 @@
 		A8940C7B1E3BB98D00CDFE25 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A8940C7D1E3BC53B00CDFE25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A8940C7F1E3BC54800CDFE25 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A89F283423B8F197003E868D /* properties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = properties.xib; sourceTree = "<group>"; };
 		A8A45B941E27FBB5008AB81D /* trasformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trasformers.h; sourceTree = "<group>"; };
 		A8A45B951E27FBB5008AB81D /* trasformers.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = trasformers.mm; sourceTree = "<group>"; };
 		A8A45B9D1E281EA5008AB81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,6 +124,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A811A5E923B8085E00F21E1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A822DFB31E1AD4A100D01EC8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,6 +149,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A811A5ED23B8085E00F21E1B /* ramfs */ = {
+			isa = PBXGroup;
+			children = (
+				A811A5F223B809DC00F21E1B /* images */,
+				A89F283423B8F197003E868D /* properties.xib */,
+				A811A5EE23B8085E00F21E1B /* Info.plist */,
+				A811A5F723B80A5E00F21E1B /* ramfs.h */,
+				A811A5F823B80A5E00F21E1B /* ramfs.mm */,
+			);
+			path = ramfs;
+			sourceTree = "<group>";
+		};
+		A811A5F223B809DC00F21E1B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A811A5F323B809F800F21E1B /* ram0.png */,
+				A811A5F423B809F800F21E1B /* ram1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		A8121A2B1E1DD755000A1FA2 /* transformers */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +197,7 @@
 				A822DFB81E1AD4A200D01EC8 /* macFusion */,
 				A84287EE1E1B2B9500FA45E8 /* sshfs */,
 				A8A45B9C1E281EA5008AB81D /* afp */,
+				A811A5ED23B8085E00F21E1B /* ramfs */,
 				A822DFB71E1AD4A200D01EC8 /* Products */,
 				A8A45BAC1E2833CF008AB81D /* Frameworks */,
 			);
@@ -158,6 +208,7 @@
 			children = (
 				A822DFB61E1AD4A200D01EC8 /* macFusion.app */,
 				A84287ED1E1B2B9500FA45E8 /* sshfs.filesystem */,
+				A811A5EC23B8085E00F21E1B /* ramfs.filesystem */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,9 +325,10 @@
 		A8A66ADE1E204CF900E1EA51 /* editor */ = {
 			isa = PBXGroup;
 			children = (
+				A8A66AEC1E20876B00E1EA51 /* automount.xib */,
 				A8A45BAA1E282B0E008AB81D /* credentials.xib */,
 				A8A66AE31E2050E300E1EA51 /* macfusion.xib */,
-				A8A66AEC1E20876B00E1EA51 /* automount.xib */,
+				A811A5FD23B8124400F21E1B /* mountpoint.xib */,
 				A8A66ADF1E204D2B00E1EA51 /* editor.h */,
 				A8A66AE01E204D2B00E1EA51 /* editor.mm */,
 			);
@@ -295,6 +347,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A811A5EB23B8085E00F21E1B /* ramfs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A811A5F123B8085E00F21E1B /* Build configuration list for PBXNativeTarget "ramfs" */;
+			buildPhases = (
+				A811A5E823B8085E00F21E1B /* Sources */,
+				A811A5E923B8085E00F21E1B /* Frameworks */,
+				A811A5EA23B8085E00F21E1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ramfs;
+			productName = ramfs;
+			productReference = A811A5EC23B8085E00F21E1B /* ramfs.filesystem */;
+			productType = "com.apple.product-type.bundle";
+		};
 		A822DFB51E1AD4A100D01EC8 /* macFusion */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A822DFC71E1AD4A200D01EC8 /* Build configuration list for PBXNativeTarget "macFusion" */;
@@ -307,6 +376,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A811A5FB23B80AA600F21E1B /* PBXTargetDependency */,
 				A84287FB1E1B386300FA45E8 /* PBXTargetDependency */,
 			);
 			name = macFusion;
@@ -340,6 +410,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Alexandra Beebe";
 				TargetAttributes = {
+					A811A5EB23B8085E00F21E1B = {
+						CreatedOnToolsVersion = 11.1;
+						DevelopmentTeam = X5QUDAATB4;
+						ProvisioningStyle = Automatic;
+					};
 					A822DFB51E1AD4A100D01EC8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = X5QUDAATB4;
@@ -368,11 +443,21 @@
 			targets = (
 				A822DFB51E1AD4A100D01EC8 /* macFusion */,
 				A84287EC1E1B2B9500FA45E8 /* sshfs */,
+				A811A5EB23B8085E00F21E1B /* ramfs */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A811A5EA23B8085E00F21E1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A89F283523B8F197003E868D /* properties.xib in Resources */,
+				A811A5F523B809F800F21E1B /* ram0.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A822DFB41E1AD4A100D01EC8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +466,7 @@
 				A86572251E20425100C4C5E1 /* overlay.xib in Resources */,
 				A8A66AED1E20876B00E1EA51 /* automount.xib in Resources */,
 				A822DFC01E1AD4A200D01EC8 /* Assets.xcassets in Resources */,
+				A811A5FE23B8124400F21E1B /* mountpoint.xib in Resources */,
 				A822DFC31E1AD4A200D01EC8 /* MainMenu.xib in Resources */,
 				A8A66AE41E2050E300E1EA51 /* macfusion.xib in Resources */,
 				A8A45BAB1E282B0E008AB81D /* credentials.xib in Resources */,
@@ -399,6 +485,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A811A5E823B8085E00F21E1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A811A5F923B80A5E00F21E1B /* ramfs.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A822DFB21E1AD4A100D01EC8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -427,6 +521,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A811A5FB23B80AA600F21E1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A811A5EB23B8085E00F21E1B /* ramfs */;
+			targetProxy = A811A5FA23B80AA600F21E1B /* PBXContainerItemProxy */;
+		};
 		A84287FB1E1B386300FA45E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A84287EC1E1B2B9500FA45E8 /* sshfs */;
@@ -446,6 +545,71 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A811A5EF23B8085E00F21E1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = X5QUDAATB4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ramfs/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.androidmedia.macfusion.ramfs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = filesystem;
+			};
+			name = Debug;
+		};
+		A811A5F023B8085E00F21E1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = X5QUDAATB4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ramfs/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.androidmedia.macfusion.ramfs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = filesystem;
+			};
+			name = Release;
+		};
 		A822DFC51E1AD4A200D01EC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -601,6 +765,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A811A5F123B8085E00F21E1B /* Build configuration list for PBXNativeTarget "ramfs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A811A5EF23B8085E00F21E1B /* Debug */,
+				A811A5F023B8085E00F21E1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A822DFB11E1AD4A100D01EC8 /* Build configuration list for PBXProject "macFusion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
