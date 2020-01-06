@@ -43,24 +43,17 @@ NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
         [task launch];
         [task waitUntilExit];
 
-
+        char *bytes;
+        if ((bytes = (char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes]))
+        {
+            //
+            output = [[NSString stringWithUTF8String:bytes] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSLog (@" task: *** %@ ***", output);
+        }
 
         //
-        output = [[NSString stringWithUTF8String:(const char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes]] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSLog (@" task: *** %@ ***", output);
-
-
-        
-//        NSFileHandle *file = [out fileHandleForReading];
-//        
-//        NSData *pipe = [file availableData];
-//        output = (char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes];
-//        NSLog (@" task: %s", output);
-
         if ([task terminationReason] == NSTaskTerminationReasonUncaughtSignal)
             output = NULL;
-
-//        NSLog (@" task: %s", (char *) [[[out fileHandleForReading] readDataToEndOfFile] bytes]);
     }
     
     //

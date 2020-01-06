@@ -52,9 +52,9 @@ NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
         count = [data[@"multiplier"] unsignedLongLongValue];
 
     //
-    uint64_t bytes;
-    if (!(bytes = [data[@"size"] unsignedLongLongValue]))
-        bytes = 1;
+    uint64_t bytes = 1;
+    if ([data objectForKey:@"size"])
+        bytes = strtoull([data[@"size"] UTF8String], NULL, 10);
 
     //
     bytes *= 1048576;
@@ -66,7 +66,7 @@ NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
     // 1g == 1073741824 [ 524288 ]
 
     //
-    return [NSString stringWithFormat:@"ram://%lld", bytes / 2048];
+    return [NSString stringWithFormat:@"ram://%lld", bytes / 512];
 }
 //
 
@@ -82,21 +82,11 @@ NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
 -(void      ) epilogEdit :(NSMutableDictionary *)data
 {
     data[MOUNT] = @[data[MOUNT][0]];
-
-    //
-//    for (NSString *option in [NSArray arrayWithArray:data[MOUNT]])
-//    {
-//        if (![option hasPrefix:@"-o"])
-//            continue;
-//
-//        //
-//        [data[MOUNT] removeObject:option];
-//    }
 }
 //
 
 @end
 
-// size = size / 2048
+// size = size / 512
 // hdiutil attach -nomount ram://size
 // diskutil erasevolume HFS+ xcode /dev/disk8

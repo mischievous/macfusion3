@@ -32,7 +32,6 @@
 		<string>Ram Disk Filesystem</string>
 		<key>nibs</key>
 		<array>
-			<string>mountpoint</string>
 			<string>automount</string>
 			<string>properties</string>
 		</array>
