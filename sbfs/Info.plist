@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2020 Alexandra Beebe. All rights reserved.</string>
+	<key>NSPrincipalClass</key>
+	<string>sbfs</string>
+	<key>fileSystem</key>
+	<dict>
+		<key>executable</key>
+		<string>/usr/bin/hdiutil</string>
+		<key>image</key>
+		<string>ram0.png</string>
+		<key>name</key>
+		<string>Sparse Bundle</string>
+		<key>nibs</key>
+		<array>
+			<string>automount</string>
+			<string>properties</string>
+		</array>
+		<key>options</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>

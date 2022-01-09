@@ -34,6 +34,11 @@
 		A8A66AE81E2052C700E1EA51 /* advanced.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A66AE71E2052C700E1EA51 /* advanced.xib */; };
 		A8A66AED1E20876B00E1EA51 /* automount.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A66AEC1E20876B00E1EA51 /* automount.xib */; };
 		A8A66AF41E2165A700E1EA51 /* kvo_block.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8A66AF31E2165A700E1EA51 /* kvo_block.mm */; };
+		A8C17AD9245AE4C500CD76F3 /* ram0.png in Resources */ = {isa = PBXBuildFile; fileRef = A8C17AD7245AE4C400CD76F3 /* ram0.png */; };
+		A8C17ADA245AE4C500CD76F3 /* ram1.png in Resources */ = {isa = PBXBuildFile; fileRef = A8C17AD8245AE4C500CD76F3 /* ram1.png */; };
+		A8C17ADE245AE50800CD76F3 /* properties.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C17ADB245AE50800CD76F3 /* properties.xib */; };
+		A8C17ADF245AE50800CD76F3 /* sbfs.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C17ADD245AE50800CD76F3 /* sbfs.mm */; };
+		A8C17AE2245AE63000CD76F3 /* sbfs.filesystem in CopyFiles */ = {isa = PBXBuildFile; fileRef = A8C17AD0245AE39D00CD76F3 /* sbfs.filesystem */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,13 @@
 			remoteGlobalIDString = A84287EC1E1B2B9500FA45E8;
 			remoteInfo = sshfs;
 		};
+		A8C17AE0245AE54E00CD76F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A822DFAE1E1AD4A100D01EC8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8C17ACF245AE39D00CD76F3;
+			remoteInfo = sbfs;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +72,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				A8C17AE2245AE63000CD76F3 /* sbfs.filesystem in CopyFiles */,
 				A811A5FC23B80AB100F21E1B /* ramfs.filesystem in CopyFiles */,
 				A84287FD1E1B388500FA45E8 /* sshfs.filesystem in CopyFiles */,
 			);
@@ -120,6 +133,13 @@
 		A8A66AEC1E20876B00E1EA51 /* automount.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = automount.xib; sourceTree = "<group>"; };
 		A8A66AF21E2165A700E1EA51 /* kvo_block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kvo_block.h; path = kvo/kvo_block.h; sourceTree = "<group>"; };
 		A8A66AF31E2165A700E1EA51 /* kvo_block.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = kvo_block.mm; path = kvo/kvo_block.mm; sourceTree = "<group>"; };
+		A8C17AD0245AE39D00CD76F3 /* sbfs.filesystem */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sbfs.filesystem; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8C17AD2245AE39D00CD76F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8C17AD7245AE4C400CD76F3 /* ram0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ram0.png; sourceTree = "<group>"; };
+		A8C17AD8245AE4C500CD76F3 /* ram1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ram1.png; sourceTree = "<group>"; };
+		A8C17ADB245AE50800CD76F3 /* properties.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = properties.xib; sourceTree = "<group>"; };
+		A8C17ADC245AE50800CD76F3 /* sbfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sbfs.h; sourceTree = "<group>"; };
+		A8C17ADD245AE50800CD76F3 /* sbfs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = sbfs.mm; sourceTree = "<group>"; };
 		A8C65EB41E1C5071007186A3 /* macFusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macFusion.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +160,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A84287EA1E1B2B9500FA45E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8C17ACD245AE39D00CD76F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,6 +225,7 @@
 				A84287EE1E1B2B9500FA45E8 /* sshfs */,
 				A8A45B9C1E281EA5008AB81D /* afp */,
 				A811A5ED23B8085E00F21E1B /* ramfs */,
+				A8C17AD1245AE39D00CD76F3 /* sbfs */,
 				A822DFB71E1AD4A200D01EC8 /* Products */,
 				A8A45BAC1E2833CF008AB81D /* Frameworks */,
 			);
@@ -209,6 +237,7 @@
 				A822DFB61E1AD4A200D01EC8 /* macFusion.app */,
 				A84287ED1E1B2B9500FA45E8 /* sshfs.filesystem */,
 				A811A5EC23B8085E00F21E1B /* ramfs.filesystem */,
+				A8C17AD0245AE39D00CD76F3 /* sbfs.filesystem */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +373,27 @@
 			name = kvo;
 			sourceTree = "<group>";
 		};
+		A8C17AD1245AE39D00CD76F3 /* sbfs */ = {
+			isa = PBXGroup;
+			children = (
+				A8C17AD6245AE4AA00CD76F3 /* images */,
+				A8C17ADB245AE50800CD76F3 /* properties.xib */,
+				A8C17AD2245AE39D00CD76F3 /* Info.plist */,
+				A8C17ADC245AE50800CD76F3 /* sbfs.h */,
+				A8C17ADD245AE50800CD76F3 /* sbfs.mm */,
+			);
+			path = sbfs;
+			sourceTree = "<group>";
+		};
+		A8C17AD6245AE4AA00CD76F3 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A8C17AD7245AE4C400CD76F3 /* ram0.png */,
+				A8C17AD8245AE4C500CD76F3 /* ram1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -376,6 +426,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A8C17AE1245AE54E00CD76F3 /* PBXTargetDependency */,
 				A811A5FB23B80AA600F21E1B /* PBXTargetDependency */,
 				A84287FB1E1B386300FA45E8 /* PBXTargetDependency */,
 			);
@@ -399,6 +450,23 @@
 			name = sshfs;
 			productName = sshfs;
 			productReference = A84287ED1E1B2B9500FA45E8 /* sshfs.filesystem */;
+			productType = "com.apple.product-type.bundle";
+		};
+		A8C17ACF245AE39D00CD76F3 /* sbfs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8C17AD5245AE39D00CD76F3 /* Build configuration list for PBXNativeTarget "sbfs" */;
+			buildPhases = (
+				A8C17ACC245AE39D00CD76F3 /* Sources */,
+				A8C17ACD245AE39D00CD76F3 /* Frameworks */,
+				A8C17ACE245AE39D00CD76F3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sbfs;
+			productName = sbfs;
+			productReference = A8C17AD0245AE39D00CD76F3 /* sbfs.filesystem */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -425,6 +493,11 @@
 						DevelopmentTeam = X5QUDAATB4;
 						ProvisioningStyle = Automatic;
 					};
+					A8C17ACF245AE39D00CD76F3 = {
+						CreatedOnToolsVersion = 11.1;
+						DevelopmentTeam = X5QUDAATB4;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = A822DFB11E1AD4A100D01EC8 /* Build configuration list for PBXProject "macFusion" */;
@@ -444,6 +517,7 @@
 				A822DFB51E1AD4A100D01EC8 /* macFusion */,
 				A84287EC1E1B2B9500FA45E8 /* sshfs */,
 				A811A5EB23B8085E00F21E1B /* ramfs */,
+				A8C17ACF245AE39D00CD76F3 /* sbfs */,
 			);
 		};
 /* End PBXProject section */
@@ -479,6 +553,16 @@
 			files = (
 				A84287F41E1B341C00FA45E8 /* sshfs.png in Resources */,
 				A8A66AE81E2052C700E1EA51 /* advanced.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8C17ACE245AE39D00CD76F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8C17ADA245AE4C500CD76F3 /* ram1.png in Resources */,
+				A8C17AD9245AE4C500CD76F3 /* ram0.png in Resources */,
+				A8C17ADE245AE50800CD76F3 /* properties.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +602,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A8C17ACC245AE39D00CD76F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8C17ADF245AE50800CD76F3 /* sbfs.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -530,6 +622,11 @@
 			isa = PBXTargetDependency;
 			target = A84287EC1E1B2B9500FA45E8 /* sshfs */;
 			targetProxy = A84287FA1E1B386300FA45E8 /* PBXContainerItemProxy */;
+		};
+		A8C17AE1245AE54E00CD76F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8C17ACF245AE39D00CD76F3 /* sbfs */;
+			targetProxy = A8C17AE0245AE54E00CD76F3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -655,7 +752,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.12;
 			};
 			name = Debug;
 		};
@@ -696,7 +793,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.12;
 			};
 			name = Release;
 		};
@@ -762,6 +859,73 @@
 			};
 			name = Release;
 		};
+		A8C17AD3245AE39D00CD76F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = X5QUDAATB4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = sbfs/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.androidmedia.macfusion.sbfs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = filesystem;
+			};
+			name = Debug;
+		};
+		A8C17AD4245AE39D00CD76F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = X5QUDAATB4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = sbfs/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.androidmedia.macfusion.sbfs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = filesystem;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -797,6 +961,15 @@
 			buildConfigurations = (
 				A84287F01E1B2B9500FA45E8 /* Debug */,
 				A84287F11E1B2B9500FA45E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8C17AD5245AE39D00CD76F3 /* Build configuration list for PBXNativeTarget "sbfs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8C17AD3245AE39D00CD76F3 /* Debug */,
+				A8C17AD4245AE39D00CD76F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

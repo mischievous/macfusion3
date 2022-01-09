@@ -693,11 +693,11 @@
             </items>
             <point key="canvasLocation" x="142" y="503"/>
         </menu>
-        <window title="macFusion by AndroidMedia" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="macFusion by AndroidMedia" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="132"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3360" height="1890"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2160"/>
             <value key="minSize" type="size" width="480" height="132"/>
             <value key="maxSize" type="size" width="750" height="750"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
@@ -879,7 +879,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="382" height="434"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3360" height="1890"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2160"/>
             <view key="contentView" wantsLayer="YES" id="XTo-Fa-GUg">
                 <rect key="frame" x="0.0" y="0.0" width="382" height="434"/>
                 <autoresizingMask key="autoresizingMask"/>

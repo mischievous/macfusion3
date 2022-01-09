@@ -42,7 +42,7 @@
     @required
         -(NSArray  *) mount      :(NSDictionary        *) data :(NSString *) bindAddress;
 
-        -(NSString *) device     :(NSMutableDictionary *) data;
+        -(NSString *) device     :(NSMutableDictionary *) data :(NSString *) supportPath;
 
         -(void      ) prologEdit :(NSMutableDictionary *) data;
         -(void      ) epilogEdit :(NSMutableDictionary *) data;

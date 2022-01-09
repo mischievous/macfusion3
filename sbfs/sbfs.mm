@@ -10,7 +10,7 @@
 #import "executeTask.h"
 
 //
-#import "ramfs.h"
+#import "sbfs.h"
 
 // Weak symbol, should not get called.  Only hear to keep the compiler happy.
 NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
@@ -20,14 +20,14 @@ NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
 //
 
 //
-@implementation ramfs
+@implementation sbfs
 
 //
 //
 -(void     ) callback   :(NSDictionary        *) data : (NSString *) device
 {
     // diskutil erasevolume HFS+ xcode /dev/disk8
-    executeTask (@"/usr/sbin/diskutil", @[@"erasevolume", @"HFS+", data[MNTNAME], device], 0 );
+    //executeTask (@"/usr/sbin/diskutil", @[@"erasevolume", @"HFS+", data[MNTNAME], device], 0 );
 }
 //
 
@@ -36,8 +36,7 @@ NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
 //
 -(NSArray *) mount      :(NSDictionary        *) data :(NSString *) bindAddress
 {
-    //
-    return @[@"attach", @"-nomount", data[MOUNT][0]];
+    return @[@"attach", data[MOUNT][0]];
 }
 //
 
@@ -46,27 +45,40 @@ NSString *executeTask (NSString *launchPath, NSArray *arguments, BOOL debug )
 //
 -(NSString *) device     :(NSMutableDictionary *) data :(NSString *) supportPath
 {
+    //
+//    NSString *bundlePath = [[NSString pathWithComponents:@[supportPath, [NSString stringWithFormat:@"%@.sparsebundle", data[MNTNAME]]]] stringByReplacingOccurrencesOfString :@" " withString:@"\\ "];
+    NSString *bundlePath = [NSString pathWithComponents:@[supportPath, [NSString stringWithFormat:@"%@.sparsebundle", data[MNTNAME]]]];
+
+
     // The default size is GB.  So set count to 1 for gb.
     uint64_t count = 1;
     if ([data objectForKey:@"multiplier"])
         count = [data[@"multiplier"] unsignedLongLongValue];
 
+    char multiplier = 'g';
+    switch (count)
+    {
+        case   0: multiplier = 'm'; break;
+        case   1: multiplier = 'g'; break;
+
+        default : return @"";
+    }
+
     //
     uint64_t bytes = 1;
-    if ([data objectForKey:@"size"])
-        bytes = strtoull([data[@"size"] UTF8String], NULL, 10);
+     if ([data objectForKey:@"size"])
+         bytes = strtoull([data[@"size"] UTF8String], NULL, 10);
 
     //
-    bytes *= 1048576;
-    while (count)
-        { bytes *= 1024; count -= 1; }
+    NSString *size = [NSString stringWithFormat:@"%lld%c", bytes, multiplier];
 
-
-    // 1m ==    1048576 [    512 ]
-    // 1g == 1073741824 [ 524288 ]
 
     //
-    return [NSString stringWithFormat:@"ram://%lld", bytes / 512];
+    // hdiutil create -size 150g lutzmacpro_c8bcc88bf7c3.sparsebundle -fs HFS+J  -volname “backup of lutzmac”
+    executeTask (@"/usr/bin/hdiutil", @[@"create", @"-size", size,  @"-fs", @"APFS", @"-volname", data[MNTNAME], @"-type", @"SPARSEBUNDLE",  @"-nospotlight", bundlePath], 0);
+
+    //
+    return bundlePath;
 }
 //
 

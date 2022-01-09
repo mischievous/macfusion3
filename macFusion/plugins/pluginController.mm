@@ -203,7 +203,7 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
     
         //
         NSMutableDictionary *data = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:[supportPath stringByAppendingPathComponent:path]]];
-        
+
         //
         mountPaths[data[MNTPATH]] = data;
         [self volumeStatus:data :NULL];
@@ -455,6 +455,8 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
 //
 -(pluginObject *) bundleLoad :(NSString *) bundlePath
 {
+    static NSFileManager *fm = [NSFileManager defaultManager];
+
     //
     NSBundle *bundle;
     if (!(bundle = [NSBundle bundleWithPath:bundlePath]))
@@ -476,8 +478,11 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
     
     
     // If the fileSystem uses an executable make sure it exists...
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[fileSystem objectForKey:@"executable"]])
+    if (![fm fileExistsAtPath: fileSystem[@"executable"]])
+    {
+        NSLog (@"-bundleLoad :: ERROR :: %@", fileSystem [@"executable"]);
         return NULL;
+    }
 
     //
     pluginObject *object;
@@ -602,7 +607,7 @@ void callback (SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
     
     //
     NSString *device;
-    if (!(device = [plugin.primaryObject device:data]))
+    if (!(device = [plugin.primaryObject device:data :supportPath]))
         return 0;
     
     //
